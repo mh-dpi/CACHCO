@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+
+      th:replace="/layout/main::layout('Home',~{::main})"
+
+            lang="en"
+>
+<head>
+  <title>Help Center - Anti-Corruption Platform</title>
+  <link rel="stylesheet" th:href="@{/css/styles.css}" />
+</head>
+<body>
+<header>
+  <nav>
+    <ul>
+      <li><a th:href="@{/}">Home</a></li>
+      <li><a th:href="@{/help-center/add}">Add Faq</a></li>
+      <li><a th:href="@{/feedback}">Feedback</a></li>
+      <li><a th:href="@{/login}">Login</a></li>
+    </ul>
+  </nav>
+</header>
+<main>
+  <h1>Help Center</h1>
+  <div th:each="faq : ${faqs}">
+    <h2 th:text="${faq.question}">FAQ Question</h2>
+    <p th:text="${faq.answer}">FAQ Answer</p>
+  </div>
+</main>
+</body>
+</html>
+
+

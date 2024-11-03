@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      th:replace="/layout/main::layout('Alert Details ',~{::main})"
+        lang="en"
+>
+
+<body>
+
+<main class="container mx-auto p-4 text-white min-h-screen flex flex-col items-center justify-center text-center">
+    <div class="bg-gray-800 rounded-lg shadow-lg p-6 w-full ">
+        <h1 class="text-5xl font-bold mb-4 animate-bounce" th:text="${alert.title}">Alert Title</h1>
+        <br>
+        <br>
+        <p class="text-lg animate-pulse text-blue-300" th:text="${alert.description}">Alert Description</p>    </div>
+</main>
+</body>
+</html>

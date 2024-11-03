@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      th:replace="/layout/main::layout('Home',~{::main})"
+        lang="en"
+>
+<head>
+    <title>Forums - Anti-Corruption Platform</title>
+    <link rel="stylesheet" th:href="@{/css/styles.css}" />
+</head>
+<body>
+<header>
+    <nav>
+        <ul>
+            <li><a th:href="@{/}">Home</a></li>
+            <li><a th:href="@{/case-studies}">Case Studies</a></li>
+            <li><a th:href="@{/forums}">Forums</a></li>
+            <li><a th:href="@{/alerts}">Alerts</a></li>
+            <li><a th:href="@{/login}">Login</a></li>
+        </ul>
+    </nav>
+</header>
+<main>
+    <h1>Forums</h1>
+    <div th:each="topic : ${topics}">
+        <h2 th:text="${topic.title}">Topic Title</h2>
+        <p th:text="${topic.description}">Topic Description</p>
+        <a th:href="@{/forums/{id}(id=${topic.id})}">View Discussions</a>
+    </div>
+</main>
+</body>
+</html>

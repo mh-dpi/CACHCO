@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      th:replace="/layout/main::layout('Home',~{::main})"
+        lang="en"
+
+>
+<head>
+    <title>Topic Details - Anti-Corruption Platform</title>
+    <link rel="stylesheet" th:href="@{/css/styles.css}" />
+</head>
+<body>
+<header>
+    <nav>
+        <ul>
+            <li><a th:href="@{/}">Home</a></li>
+            <li><a th:href="@{/forums}">Forums</a></li>
+            <li><a th:href="@{/alerts}">Alerts</a></li>
+            <li><a th:href="@{/login}">Login</a></li>
+        </ul>
+    </nav>
+</header>
+<main>
+    <h1 th:text="${topic.title}">Topic Title</h1>
+    <div th:each="post : ${posts}">
+        <p th:text="${post.content}">Post Content</p>
+        <small th:text="${post.username}">Posted by</small>
+    </div>
+    <form th:action="@{/forums/{id}/add-post(id=${topic.id})}" method="post">
+        <textarea name="content" required></textarea>
+        <button type="submit">Reply</button>
+    </form>
+</main>
+</body>
+</html>

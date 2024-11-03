@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<section th:fragment="alerts" class="bg-gray-50 py-16" id="alerts">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <h2 class="text-3xl font-bold text-gray-900 mb-8">Recent Alerts</h2>
+        <div class="space-y-4">
+            <div th:each="alert : ${alerts}" th:class="${'rounded-lg p-4 mb-4 flex items-start ' +
+                (alert.type == 'info' ? 'bg-blue-50 text-blue-800' :
+                (alert.type == 'warning' ? 'bg-yellow-50 text-yellow-800' :
+                'bg-green-50 text-green-800'))}">
+                <i data-lucide="alert-circle" class="h-5 w-5 mr-3 flex-shrink-0 mt-0.5"></i>
+                <p class="text-sm" th:text="${alert.message}">Alert message</p>
+            </div>
+        </div>
+    </div>
+</section>
+</html>

@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      th:replace="/layout/main::layout('Home',~{::main})"
+        lang="en"
+>
+<head>
+    <title>Manage Alerts - Admin Dashboard</title>
+    <link rel="stylesheet" th:href="@{/css/styles.css}" />
+</head>
+<body>
+<header>
+    <nav>
+        <ul>
+            <li><a th:href="@{/}">Home</a></li>
+            <li><a th:href="@{/admin-dashboard}">Admin Dashboard</a></li>
+            <li><a th:href="@{/login}">Login</a></li>
+        </ul>
+    </nav>
+</header>
+<main>
+    <h1>Manage Alerts</h1>
+    <div th:each="alert : ${alerts}">
+        <p th:text="${alert.title}">Alert Title</p>
+        <p th:text="${alert.description}">Alert Description</p>
+        <a th:href="@{/admin-dashboard/alerts/delete/{id}(id=${alert.id})}">Delete Alert</a>
+    </div>
+</main>
+</body>
+</html>
+

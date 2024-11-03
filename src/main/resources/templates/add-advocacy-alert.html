@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      th:replace="/layout/main::layout('Add Advocacy Alert',~{::main})"
+        lang="en"
+>
+
+<body>
+
+<main class="container mx-auto p-4  text-white">
+    <h1 class="text-4xl font-extrabold mb-6 text-center text-blue-300">Add Advocacy Alert</h1>
+    <form th:action="@{/advocacy-alerts/add}" method="post" class="bg-gray-800 p-6 rounded-lg shadow-md transition-transform transform hover:scale-105">
+        <div>
+            <label for="title" class="block text-lg font-medium text-gray-300 mb-2">Title:</label>
+            <input type="text" id="title" name="title" required class="w-full p-2 border border-gray-600 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 bg-gray-700 text-white">
+        </div>
+        <div>
+            <label for="description" class="block text-lg font-medium text-gray-300 mb-2">Description:</label>
+            <textarea id="description" name="description" required class="w-full p-2 border border-gray-600 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 bg-gray-700 text-white"></textarea>
+        </div>
+        <div>
+            <label for="category" class="block text-lg font-medium text-gray-300 mb-2">Category:</label>
+            <select id="category" name="category" required class="w-full p-2 border border-gray-600 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 bg-gray-700 text-white">
+                <option value="corruption">Corruption</option>
+                <option value="fraud">Fraud</option>
+                <option value="abuse">Abuse</option>
+            </select>
+        </div>
+        <div>
+            <label for="priority" class="block text-lg font-medium text-gray-300 mb-2">Priority:</label>
+            <input type="number" id="priority" name="priority" min="1" max="5" required class="w-full p-2 border border-gray-600 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 bg-gray-700 text-white">
+        </div>
+        <div>
+            <button type="submit" class="mt-4 w-full bg-blue-700 text-white py-2 px-4 rounded-md hover:bg-blue-800 focus:outline-none focus:ring-2 focus:ring-blue-500 transition-colors duration-200">Add Alert</button>
+        </div>
+    </form>
+</main>
+</body>
+</html>

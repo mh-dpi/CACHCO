@@ -1,0 +1,157 @@
+/* Base styles */
+:root {
+    --primary-color: #1a365d;
+    --secondary-color: #2d3748;
+    --accent-color: #4299e1;
+}
+
+/* Navigation styles */
+.nav-link {
+    @apply text-white hover:text-blue-200 px-3 py-2 rounded-md text-sm font-medium transition-colors duration-200;
+}
+
+.nav-link-button {
+    @apply bg-blue-500 text-white hover:bg-blue-600 px-4 py-2 rounded-md text-sm font-medium transition-colors duration-200;
+}
+
+.dropdown-item {
+    @apply block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 hover:text-gray-900 transition-colors duration-200;
+}
+
+.mobile-nav-link {
+    @apply block px-3 py-2 rounded-md text-base font-medium text-white hover:text-blue-200 hover:bg-blue-700 transition-colors duration-200;
+}
+
+.mobile-dropdown-item {
+    @apply block px-3 py-2 rounded-md text-base font-medium text-gray-300 hover:text-white hover:bg-blue-700 transition-colors duration-200;
+}
+
+/* Animation classes */
+.fade-enter {
+    opacity: 0;
+    transform: translateY(-10px);
+}
+
+.fade-enter-active {
+    opacity: 1;
+    transform: translateY(0);
+    transition: opacity 200ms, transform 200ms;
+}
+
+.fade-exit {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.fade-exit-active {
+    opacity: 0;
+    transform: translateY(-10px);
+    transition: opacity 200ms, transform 200ms;
+}
+
+@keyframes slideIn {
+    from {
+        transform: translateX(-100%);
+        opacity: 0;
+    }
+    to {
+        transform: translateX(0);
+        opacity: 1;
+    }
+}
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
+}
+@keyframes bounceIn {
+    0% {
+        transform: scale(0.5);
+        opacity: 0;
+    }
+    60% {
+        transform: scale(1.2);
+        opacity: 1;
+    }
+    100% {
+        transform: scale(1);
+    }
+}
+.form-animation {
+    animation: bounceIn 1s ease-in-out;
+}
+/* Add this to main.css */
+
+/* Smooth fade-in animation */
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
+}
+
+.container {
+    animation: fadeIn 1s ease-in-out;
+}
+
+/* Responsive design */
+@media (max-width: 768px) {
+    .container {
+        padding: 2rem;
+    }
+
+    .form {
+        padding: 1rem;
+    }
+}
+footer {
+    animation: fadeIn 1s ease-in-out;
+}
+footer a {
+    transition: color 0.3s, transform 0.3s;
+}
+footer a:hover {
+    transform: scale(1.1);
+}
+@media (max-width: 768px) {
+    footer .container {
+        flex-direction: column;
+        text-align: center;
+    }
+    footer .container > div {
+        margin-bottom: 1rem;
+    }
+}
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
+}
+.nav-dropdown-content {
+    transform-origin: top;
+    transition: transform 0.2s ease, opacity 0.2s ease;
+    transform: scaleY(0);
+    opacity: 0;
+}
+
+.nav-dropdown-content.active {
+    transform: scaleY(1);
+    opacity: 1;
+}
+
+@media (max-width: 1024px) {
+    .nav-dropdown-content {
+        position: static;
+        box-shadow: none;
+        width: 100%;
+        margin-left: 1rem;
+    }
+}

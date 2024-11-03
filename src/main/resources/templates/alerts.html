@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      th:replace="/layout/main::layout('Real-Time Alerts',~{::main})"
+        lang="en"
+
+>
+
+<body>
+<main class="container mx-auto p-4 text-white min-h-screen flex flex-col items-center justify-center text-center">
+  <h1 class="text-4xl font-bold mb-4">Real-Time Alerts</h1>
+  <br>
+  <br>
+  <br>
+  <div id="alert-feed" class="w-full max-w-2xl bg-gray-800 rounded-lg shadow-lg p-6 overflow-y-auto" style="max-height: 60vh;">
+    <div th:each="alert : ${alerts}" class="mb-4 p-4 bg-gray-700 rounded-lg">
+      <p th:text="${alert.message}" class="text-lg">Alert Message</p>
+    </div>
+  </div>
+</main>
+<script>
+  var eventSource = new EventSource('/alerts/stream');
+  eventSource.onmessage = function(event) {
+    var newAlert = document.createElement('div');
+    newAlert.className = 'mb-4 p-4 bg-gray-700 rounded-lg';
+    var alertMessage = document.createElement('p');
+    alertMessage.className = 'text-lg';
+    alertMessage.textContent = event.data;
+    newAlert.appendChild(alertMessage);
+    document.getElementById('alert-feed').appendChild(newAlert);
+    document.getElementById('alert-feed').scrollTop = document.getElementById('alert-feed').scrollHeight;
+  };
+</script>
+</body>
+</html>

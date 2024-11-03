@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      th:replace="/layout/main::layout('Admin Dashboard ',~{::main})"
+      lang="en"
+>
+
+<body>
+<main class="container mx-auto p-4 text-white min-h-screen flex flex-col items-center justify-center text-center">
+
+    <center>
+        <section class="mb-8 w-full max-w-2xl">
+            <h1 class="text-2xl font-bold mb-4 text-center">Admin Dashboard</h1>
+            <table class="table-auto w-full border-collapse">
+                <thead>
+                <tr>
+                    <th class="px-4 py-2">Action</th>
+                    <th class="px-4 py-2">Link</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr>
+                    <td class="border px-4 py-2">Add Advocacy Alert</td>
+                    <td class="border px-4 py-2"><a th:href="@{/advocacy-alerts/add}"
+                                                    class="text-blue-300 hover:underline">Add Advocacy Alert</a></td>
+                </tr>
+                <tr>
+                    <td class="border px-4 py-2">Add Alert</td>
+                    <td class="border px-4 py-2"><a th:href="@{/alerts/add}" class="text-blue-300 hover:underline">Add
+                        Alert</a></td>
+                </tr>
+                <tr>
+                    <td class="border px-4 py-2">Add Case Study</td>
+                    <td class="border px-4 py-2"><a th:href="@{/case-studies/add}"
+                                                    class="text-blue-300 hover:underline">Add Case Study</a></td>
+                </tr>
+                <tr>
+                    <td class="border px-4 py-2">Add FAQ</td>
+                    <td class="border px-4 py-2"><a th:href="@{/help-center/add}" class="text-blue-300 hover:underline">Add
+                        FAQ</a></td>
+                </tr>
+ <tr>
+                    <td class="border px-4 py-2">Add Volunteer</td>
+                    <td class="border px-4 py-2"><a th:href="@{/volunteer-opportunities/add}" class="text-blue-300 hover:underline">Add Volunteer</a></td>
+                </tr>
+
+                </tbody>
+            </table>
+        </section>
+    </center>
+</main>
+<script>
+    document.addEventListener('DOMContentLoaded', function () {
+        const mainElement = document.querySelector('main');
+        mainElement.style.background = 'linear-gradient(180deg, #1e3a8a, #000)';
+        mainElement.style.color = '#fff';
+
+        // Optional: Background animation
+        let hue = 0;
+        setInterval(() => {
+            hue = (hue + 1) % 360;
+            mainElement.style.background = `linear-gradient(180deg, hsl(${hue}, 50%, 20%), #000)`;
+        }, 10000); // Change hue every 10 seconds
+    });
+</script>
+</body>
+</html>

@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      th:replace="/layout/main::layout('Home',~{::main})"
+        lang="en"
+>
+<head>
+    <title>Webinars & Workshops - Anti-Corruption Platform</title>
+    <link rel="stylesheet" th:href="@{/css/styles.css}" />
+</head>
+<body>
+<header>
+    <nav>
+        <ul>
+            <li><a th:href="@{/}">Home</a></li>
+            <li><a th:href="@{/learning-modules}">Learning Modules</a></li>
+            <li><a th:href="@{/webinars}">Webinars & Workshops</a></li>
+            <li><a th:href="@{/login}">Login</a></li>
+        </ul>
+    </nav>
+</header>
+<main>
+    <h1>Webinars & Workshops</h1>
+    <div th:each="webinar : ${webinars}">
+        <h2 th:text="${webinar.title}">Webinar Title</h2>
+        <p th:text="${webinar.description}">Webinar Description</p>
+        <a th:href="@{/webinars/{id}(id=${webinar.id})}">View Details</a>
+    </div>
+</main>
+</body>
+</html>

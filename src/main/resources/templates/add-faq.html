@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+
+      th:replace="/layout/main::layout('Add FAQ',~{::main})"
+        lang="en"
+>
+
+<body>
+<main class="container mx-auto p-6 text-white min-h-screen flex flex-col items-center justify-center text-center ">
+    <h1 class="text-3xl lg:text-4xl font-bold mb-6 mt-4">Add FAQ</h1>
+    <form th:action="@{/help-center/add}" method="post" class="w-full max-w-lg mb-4">
+        <div class="mb-4">
+            <label for="question" class="block text-left mb-2">Question:</label>
+            <input type="text" id="question" name="question" required class="w-full p-2 bg-gray-800 text-white border border-gray-600 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 transition-all duration-200">
+        </div>
+        <div class="mb-4">
+            <label for="answer" class="block text-left mb-2">Answer:</label>
+            <textarea id="answer" name="answer" required class="w-full p-2 bg-gray-800 text-white border border-gray-600 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 transition-all duration-200"></textarea>
+        </div>
+        <button type="submit" class="w-full py-2 px-4 bg-blue-500 text-white rounded-md hover:scale-105 hover:shadow-lg transition-transform duration-300">Add FAQ</button>
+    </form>
+</main>
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        gsap.fromTo('h1', { x: -100, opacity: 0 }, { x: 0, opacity: 1, duration: 1, ease: 'power2.out' });
+        gsap.fromTo('form', { y: 100, opacity: 0 }, { y: 0, opacity: 1, duration: 1, ease: 'power2.out', delay: 0.5 });
+
+        // Section animations on scroll
+        gsap.utils.toArray('section').forEach(section => {
+            gsap.fromTo(section, { y: 100, opacity: 0 }, {
+                y: 0,
+                opacity: 1,
+                scrollTrigger: {
+                    trigger: section,
+                    start: 'top 80%',
+                    end: 'bottom 20%',
+                    scrub: true
+                }
+            });
+        });
+
+        // Continuous animation for icons
+        gsap.to('.icon', { rotation: 360, duration: 20, repeat: -1, ease: 'linear' });
+    });
+</script>
+</script>
+</body>
+</html>

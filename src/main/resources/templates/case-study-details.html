@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      th:replace="/layout/main::layout('Home',~{::main})"
+        lang="en"
+>
+<head>
+    <title>Case Study Details - Anti-Corruption Platform</title>
+    <link rel="stylesheet" th:href="@{/css/styles.css}" />
+</head>
+<body>
+<header>
+    <nav>
+        <ul>
+            <li><a th:href="@{/}">Home</a></li>
+            <li><a th:href="@{/case-studies}">Case Studies</a></li>
+            <li><a th:href="@{/alerts}">Alerts</a></li>
+            <li><a th:href="@{/login}">Login</a></li>
+        </ul>
+    </nav>
+</header>
+<main>
+    <h1 th:text="${caseStudy.title}">Case Study Title</h1>
+    <p th:text="${caseStudy.fullDescription}">Full Case Study Description</p>
+</main>
+</body>
+</html>

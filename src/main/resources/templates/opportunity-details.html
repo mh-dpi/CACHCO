@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      th:replace="/layout/main::layout('Home',~{::main})"
+        lang="en"
+>
+<head>
+    <title>Opportunity Details - Anti-Corruption Platform</title>
+    <link rel="stylesheet" th:href="@{/css/styles.css}" />
+</head>
+<body>
+<header>
+    <nav>
+        <ul>
+            <li><a th:href="@{/}">Home</a></li>
+            <li><a th:href="@{/advocacy-alerts}">Advocacy Alerts</a></li>
+            <li><a th:href="@{/volunteer-opportunities}">Volunteer Opportunities</a></li>
+            <li><a th:href="@{/login}">Login</a></li>
+        </ul>
+    </nav>
+</header>
+<main>
+    <h1 th:text="${opportunity.title}">Opportunity Title</h1>
+    <p th:text="${opportunity.description}">Opportunity Description</p>
+</main>
+</body>
+</html>
