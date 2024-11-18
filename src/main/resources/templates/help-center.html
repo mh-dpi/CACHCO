@@ -1,32 +1,36 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org"
 
-      th:replace="/layout/main::layout('Home',~{::main})"
+      th:replace="/layout/main::layout('Help Center ',~{::main})"
 
             lang="en"
 >
-<head>
-  <title>Help Center - Anti-Corruption Platform</title>
-  <link rel="stylesheet" th:href="@{/css/styles.css}" />
-</head>
+
 <body>
-<header>
-  <nav>
-    <ul>
-      <li><a th:href="@{/}">Home</a></li>
-      <li><a th:href="@{/help-center/add}">Add Faq</a></li>
-      <li><a th:href="@{/feedback}">Feedback</a></li>
-      <li><a th:href="@{/login}">Login</a></li>
-    </ul>
-  </nav>
-</header>
-<main>
-  <h1>Help Center</h1>
-  <div th:each="faq : ${faqs}">
-    <h2 th:text="${faq.question}">FAQ Question</h2>
-    <p th:text="${faq.answer}">FAQ Answer</p>
+
+<main class="container mx-auto p-4 text-white min-h-screen flex flex-col items-center justify-center text-center bg-gray-900">
+  <h1 th:replace="~{layout/fragments/TextHeader::TextHeader('Help Center')}"></h1>
+
+  <div th:each="faq : ${faqs}" class="w-full max-w-lg bg-gray-800 p-6 rounded-md shadow-md mb-4">
+    <h2 th:text="${faq.question}" class="text-2xl font-semibold mb-2">FAQ Question</h2>
+    <p th:text="${faq.answer}" class="mb-4">FAQ Answer</p>
   </div>
 </main>
+<script>
+  document.addEventListener('DOMContentLoaded', function () {
+    gsap.from("div[th\\:each='faq : ${faqs}']", { duration: 1, y: 50, opacity: 0, ease: "power2.out", stagger: 0.2 });
+
+    const inputs = document.querySelectorAll('input, textarea');
+    inputs.forEach(input => {
+      input.addEventListener('focus', () => {
+        gsap.to(input, { scale: 1.05, borderColor: '#3b82f6', duration: 0.2 });
+      });
+      input.addEventListener('blur', () => {
+        gsap.to(input, { scale: 1, borderColor: '#4b5563', duration: 0.2 });
+      });
+    });
+  });
+</script>
 </body>
 </html>
 

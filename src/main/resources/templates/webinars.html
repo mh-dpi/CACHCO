@@ -1,30 +1,51 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org"
-      th:replace="/layout/main::layout('Home',~{::main})"
+      th:replace="/layout/main::layout('Webinars & Workshops',~{::main})"
         lang="en"
 >
-<head>
-    <title>Webinars & Workshops - Anti-Corruption Platform</title>
-    <link rel="stylesheet" th:href="@{/css/styles.css}" />
-</head>
+
 <body>
-<header>
-    <nav>
-        <ul>
-            <li><a th:href="@{/}">Home</a></li>
-            <li><a th:href="@{/learning-modules}">Learning Modules</a></li>
-            <li><a th:href="@{/webinars}">Webinars & Workshops</a></li>
-            <li><a th:href="@{/login}">Login</a></li>
-        </ul>
-    </nav>
-</header>
-<main>
-    <h1>Webinars & Workshops</h1>
-    <div th:each="webinar : ${webinars}">
-        <h2 th:text="${webinar.title}">Webinar Title</h2>
-        <p th:text="${webinar.description}">Webinar Description</p>
-        <a th:href="@{/webinars/{id}(id=${webinar.id})}">View Details</a>
+
+<main class="bg-gray-900 min-h-screen p-4">
+    <h1 th:replace="~{layout/fragments/TextHeader::TextHeader('Webinars & Workshops')}"></h1>
+    <div class="card bg-gray-800 p-4 m-4 rounded-md shadow-lg" th:each="webinar : ${webinars}">
+        <div class="card-body">
+            <h2 class="text-white text-xl font-semibold mb-2" th:text="${webinar.title}">Webinar Title</h2>
+            <p class="text-gray-300 mb-4" th:text="${webinar.description}">Webinar Description</p>
+            <p class="text-gray-300 mb-4" th:text="${webinar.date}">Webinar Date</p>
+            <a class="text-blue-500 hover:underline" th:href="@{/webinars/{id}(id=${webinar.id})}">View Details</a>
+        </div>
     </div>
 </main>
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        gsap.from('.card-body', { duration: 1, y: 50, opacity: 0, ease: 'power3.out' });
+
+        const inputs = document.querySelectorAll('input');
+        inputs.forEach(input => {
+            input.classList.add('bg-gray-800', 'text-white', 'border', 'border-gray-600', 'rounded-md', 'transition-transform', 'duration-200');
+            input.addEventListener('focus', () => {
+                gsap.to(input, { scale: 1.05, borderColor: '#3b82f6', duration: 0.2 });
+            });
+            input.addEventListener('blur', () => {
+                gsap.to(input, { scale: 1, borderColor: '#4b5563', duration: 0.2 });
+            });
+        });
+
+        gsap.utils.toArray('.card-text').forEach(text => {
+            gsap.from(text, {
+                scrollTrigger: {
+                    trigger: text,
+                    start: 'top 80%',
+                    toggleActions: 'play none none none'
+                },
+                y: 20,
+                opacity: 0,
+                duration: 0.6,
+                ease: 'power3.out'
+            });
+        });
+    });
+</script>
 </body>
 </html>

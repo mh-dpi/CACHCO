@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en"
+      th:replace="/layout/main::layout('Add New Webinar',~{::main})"
+      xmlns:th="http://www.thymeleaf.org"
+>
+<body>
+
+<main class="container mx-auto p-4  text-white">
+  <h1 th:replace="~{layout/fragments/TextHeader::TextHeader('Add Advocacy Alert ')}"></h1>
+  <form th:action="@{/webinars/add}" method="post" class="bg-gray-800 p-6 rounded-lg shadow-md transition-transform transform hover:scale-105">
+    <div>
+      <label for="title" class="block text-lg font-medium text-gray-300 mb-2">Title:</label>
+      <input type="text" id="title" name="title" required class="w-full p-2 border border-gray-600 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 bg-gray-700 text-white">
+    </div>
+    <div>
+      <label for="description" class="block text-lg font-medium text-gray-300 mb-2">Description:</label>
+      <textarea id="description" name="description" required class="w-full p-2 border border-gray-600 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 bg-gray-700 text-white"></textarea>
+    </div>
+    <div>
+      <label for="date" class="block text-lg font-medium text-gray-300 mb-2">Date:</label>
+      <input type="text" id="date" name="date" required class="w-full p-2 border border-gray-600 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 bg-gray-700 text-white">
+    </div>
+    <div>
+      <label for="type" class="block text-lg font-medium text-gray-300 mb-2">Type:</label>
+      <input type="text" id="type" name="type" required class="w-full p-2 border border-gray-600 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 bg-gray-700 text-white">
+    </div>
+    <div>
+      <label for="link" class="block text-lg font-medium text-gray-300 mb-2">Link:</label>
+      <input type="text" id="link" name="link" required class="w-full p-2 border border-gray-600 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 bg-gray-700 text-white">
+    </div>
+    <div>
+      <label for="duration" class="block text-lg font-medium text-gray-300 mb-2">Duration (minutes):</label>
+      <input type="number" id="duration" name="duration" min="1" required class="w-full p-2 border border-gray-600 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 bg-gray-700 text-white">
+    </div>
+    <div>
+      <label for="speaker" class="block text-lg font-medium text-gray-300 mb-2">Speaker:</label>
+      <input type="text" id="speaker" name="speaker" required class="w-full p-2 border border-gray-600 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 bg-gray-700 text-white">
+    </div>
+    <div>
+      <label for="organization" class="block text-lg font-medium text-gray-300 mb-2">Organization:</label>
+      <input type="text" id="organization" name="organization" required class="w-full p-2 border border-gray-600 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 bg-gray-700 text-white">
+    </div>
+    <div>
+      <button type="submit" class="mt-4 w-full bg-blue-700 text-white py-2 px-4 rounded-md hover:bg-blue-800 focus:outline-none focus:ring-2 focus:ring-blue-500 transition-colors duration-200">Add Webinar</button>
+    </div>
+  </form>
+</main>
+<script>
+    document.addEventListener('DOMContentLoaded', function () {
+        gsap.from('.card-body', {duration: 1, y: 50, opacity: 0, ease: 'power3.out'});
+
+        const inputs = document.querySelectorAll('input');
+        inputs.forEach(input => {
+            input.classList.add('bg-gray-800', 'text-white', 'border', 'border-gray-600', 'rounded-md', 'transition-transform', 'duration-200');
+            input.addEventListener('focus', () => {
+                gsap.to(input, {scale: 1.05, borderColor: '#3b82f6', duration: 0.2});
+            });
+            input.addEventListener('blur', () => {
+                gsap.to(input, {scale: 1, borderColor: '#4b5563', duration: 0.2});
+            });
+        });
+
+        gsap.utils.toArray('.card-text').forEach(text => {
+            gsap.from(text, {
+                scrollTrigger: {
+                    trigger: text,
+                    start: 'top 80%',
+                    toggleActions: 'play none none none'
+                },
+                y: 20,
+                opacity: 0,
+                duration: 0.6,
+                ease: 'power3.out'
+            });
+        });
+    });
+</script>
+
+</body>
+</html>

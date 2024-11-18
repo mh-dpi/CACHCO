@@ -1,6 +1,6 @@
 package com.example.cachco.controller
 
-import com.example.cachco.entity.User
+import com.example.cachco.entity.UserModel
 import com.example.cachco.service.UserService
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.stereotype.Controller
@@ -41,7 +41,7 @@ class UserController(
         @RequestParam email: String,
         @RequestParam password: String
     ): String {
-        userService.register(User(0, username, email, password,"",""))
+        userService.register(UserModel(0, username, email, password,"",""))
         return "redirect:/login"
     }
 
@@ -58,14 +58,20 @@ class UserController(
 
     @GetMapping("/profile")
     fun profile(model: Model): String {
-        val user: User = userService.getCurrentUser()
+        val user: UserModel = userService.getCurrentUser()
         model.addAttribute("user", user)
         return "profile"
     }
 
     @PostMapping("/profile")
     fun updateProfile(@RequestParam username: String, @RequestParam email: String): String {
-        userService.updateProfile(User(0, username, email,"","",""))
+        userService.updateProfile(UserModel(0, username, email,"","",""))
         return "redirect:/profile"
+    }
+
+    @GetMapping("/logout")
+    fun logout(): String {
+        userService.logout()
+        return "redirect:/login"
     }
 }

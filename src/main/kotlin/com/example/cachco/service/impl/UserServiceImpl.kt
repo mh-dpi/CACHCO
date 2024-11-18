@@ -1,28 +1,48 @@
 package com.example.cachco.service.impl
 
-import com.example.cachco.entity.User
+import com.example.cachco.entity.UserModel
+import com.example.cachco.repository.UserRepository
 import com.example.cachco.service.UserService
+import jakarta.servlet.http.HttpSession
 import org.springframework.boot.autoconfigure.security.SecurityProperties
 import org.springframework.stereotype.Service
 
 @Service
-class UserServiceImpl : UserService {
+class UserServiceImpl(
+    val userRepository: UserRepository,
+    val session:HttpSession
+) : UserService {
     override fun authenticate(username: String, password: String): Boolean {
-        return true
+        val user = userRepository.findByUsername(username)
+        if (user != null) {
+            if (user.password == password) {
+                session.setAttribute("currentUser", user);
+                return true
+            }
+        }
+        return false
     }
 
-    override fun register(user: User): User {
-      return user
+    override fun register(user: UserModel): UserModel {
+      return userRepository.save(user)
     }
 
     override fun resetPassword(email: String) {
+        val user = userRepository.findByEmail(email)
+        if (user != null) {
+
+        }
     }
 
-    override fun getCurrentUser(): User {
-       return User(id = 0,"mhr","a@gmail.com","MahmudulHasan","https://avatars.githubusercontent.com/u/107402929?v=4","123456")
+    override fun getCurrentUser(): UserModel {
+       return session.getAttribute("currentUser") as UserModel
     }
 
-    override fun updateProfile(user: User): User {
-        return user
+    override fun updateProfile(user: UserModel): UserModel {
+        return userRepository.save(user)
+    }
+
+    override fun logout() {
+        session.removeAttribute("currentUser")
     }
 }

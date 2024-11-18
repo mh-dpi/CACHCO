@@ -9,10 +9,13 @@ import jakarta.persistence.Id
 data class Webinar(
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    val id: Int=0,
-    val title: String="",
-    val description: String="",
-    val date: String="",
-    val type: String="",
-    val link: String="",
+    val id: Int = 0,
+    val title: String = "",
+    val description: String = "",
+    val date: String = "",
+    val type: String = "",
+    val link: String = "",
+    val duration: Int = 0, // duration in minutes
+    val speaker: String = "",
+    val organization: String = ""
 )

@@ -7,7 +7,9 @@
 
 <body>
 <main class="container mx-auto p-6 text-white min-h-screen flex flex-col items-center justify-center text-center ">
-    <h1 class="text-3xl lg:text-4xl font-bold mb-6 mt-4">Add FAQ</h1>
+
+    <h1 th:replace="~{layout/fragments/TextHeader::TextHeader('Add FAQ')}"></h1>
+
     <form th:action="@{/help-center/add}" method="post" class="w-full max-w-lg mb-4">
         <div class="mb-4">
             <label for="question" class="block text-left mb-2">Question:</label>

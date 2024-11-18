@@ -15,7 +15,7 @@
         <ul>
             <li><a th:href="@{/}">Home</a></li>
             <li><a th:href="@{/register}">Register</a></li>
-            <li><a th:href="@{/forgot-password}">Forgot Password</a></li>
+            <li></li>
         </ul>
     </nav>
 </header>
@@ -27,6 +27,7 @@
         <label for="password">Password:</label>
         <input type="password" id="password" name="password" required>
         <button type="submit">Login</button>
+        <a th:href="@{/forgot-password}">Forgot Password</a>
     </form>
 </main>
 </body>

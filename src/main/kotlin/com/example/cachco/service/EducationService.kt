@@ -8,4 +8,5 @@ interface EducationService {
     fun getModuleById( id:Long):LearningModule?
     fun getAllWebinars():List<Webinar>
     fun getWebinarById(id:Long):Webinar?
+    fun addWebinar(webinar: Webinar)
 }

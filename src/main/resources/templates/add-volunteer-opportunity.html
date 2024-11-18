@@ -7,7 +7,9 @@
 <body>
 
 <main class="bg-gray-900 p-6 rounded-lg shadow-lg">
-    <h1 class="text-3xl font-bold mb-6 text-center">Add Volunteer Opportunity</h1>
+    <h1 class="text-3xl font-bold mb-6 text-center"></h1>
+    <h1 th:replace="~{layout/fragments/TextHeader::TextHeader('Add Volunteer Opportunity')}"></h1>
+
     <form th:action="@{/volunteer-opportunities/add}" method="post" class="space-y-4">
         <div>
             <label for="title" class="block text-sm font-medium text-white">Title:</label>

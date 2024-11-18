@@ -7,5 +7,6 @@ import org.springframework.boot.runApplication
 class CachcoApplication
 
 fun main(args: Array<String>) {
-	runApplication<CachcoApplication>(*args)
+runApplication<CachcoApplication>(*args)
+
 }

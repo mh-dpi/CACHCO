@@ -1,31 +1,48 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org"
-      th:replace="/layout/main::layout('Home',~{::main})"
+      th:replace="/layout/main::layout('iew Feedback ',~{::main})"
         lang="en"
 >
-<head>
-    <title>View Feedback - Anti-Corruption Platform</title>
-    <link rel="stylesheet" th:href="@{/css/styles.css}"
 
-
-    />
-</head>
 <body>
-<header>
-    <nav>
-        <ul>
-            <li><a th:href="@{/}">Home</a></li>
-            <li><a th:href="@{/help-center}">Help Center</a></li>
-            <li><a th:href="@{/feedback/add}">Add Feedback</a></li>
-            <li><a th:href="@{/login}">Login</a></li>
-        </ul>
-    </nav>
-</header>
-<main>
-    <h1>Feedback</h1>
-    <div th:each="feedback : ${feedbacks}">
-        <p th:text="${feedback.message}">Feedback Message</p>
+
+<main class="bg-gray-900 min-h-screen p-4">
+    <h1 class="text-white text-3xl mb-4">Feedback</h1>
+    <div class="card bg-gray-800 p-4 rounded-md shadow-lg">
+        <div class="card-body" th:each="feedback : ${feedbacks}">
+            <p class="card-text text-white mb-2 bg-gray-800 text-white border border-gray-600 rounded-md py-6 px-36 w-full focus:ring-2 focus:ring-blue-500 transition-transform duration-200 transform focus:scale-105" th:text="${feedback.message}">Feedback Message</p>
+
+        </div>
     </div>
 </main>
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        gsap.from('.card-body', { duration: 1, y: 50, opacity: 0, ease: 'power3.out' });
+
+        const inputs = document.querySelectorAll('input');
+        inputs.forEach(input => {
+            input.addEventListener('focus', () => {
+                gsap.to(input, { scale: 1.05, borderColor: '#3b82f6', duration: 0.2 });
+            });
+            input.addEventListener('blur', () => {
+                gsap.to(input, { scale: 1, borderColor: '#4b5563', duration: 0.2 });
+            });
+        });
+
+        gsap.utils.toArray('.card-text').forEach(text => {
+            gsap.from(text, {
+                scrollTrigger: {
+                    trigger: text,
+                    start: 'top 80%',
+                    toggleActions: 'play none none none'
+                },
+                y: 20,
+                opacity: 0,
+                duration: 0.6,
+                ease: 'power3.out'
+            });
+        });
+    });
+</script>
 </body>
 </html>

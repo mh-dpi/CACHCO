@@ -11,23 +11,11 @@ class AdminController {
         return "admin-dashboard"
     }
 
-    @GetMapping("/admin-dashboard/users")
-    fun manageUsers(model: Model?): String {
-        // Fetch user data logic
-        return "manage-users"
-    }
 
-    @GetMapping("/admin-dashboard/case-studies")
-    fun manageCaseStudies(model: Model?): String {
-        // Fetch case studies data logic
-        return "manage-case-studies"
-    }
 
-    @GetMapping("/admin-dashboard/alerts")
-    fun manageAlerts(model: Model?): String {
-        // Fetch alerts data logic
-        return "manage-alerts"
-    }
+
+
+
 
 }
 

@@ -9,7 +9,8 @@
 
     <center>
         <section class="mb-8 w-full max-w-2xl">
-            <h1 class="text-2xl font-bold mb-4 text-center">Admin Dashboard</h1>
+            <h1 th:replace="~{layout/fragments/TextHeader::TextHeader('Admin Dashboard')}"></h1>
+
             <table class="table-auto w-full border-collapse">
                 <thead>
                 <tr>
@@ -41,6 +42,13 @@
  <tr>
                     <td class="border px-4 py-2">Add Volunteer</td>
                     <td class="border px-4 py-2"><a th:href="@{/volunteer-opportunities/add}" class="text-blue-300 hover:underline">Add Volunteer</a></td>
+                </tr> <tr>
+                    <td class="border px-4 py-2">View Feedback</td>
+                    <td class="border px-4 py-2"><a th:href="@{/feedback}" class="text-blue-300 hover:underline">View Feedback</a></td>
+                </tr>
+<tr>
+                    <td class="border px-4 py-2">Add Webinars</td>
+                    <td class="border px-4 py-2"><a th:href="@{/webinars/add}" class="text-blue-300 hover:underline">Add Webinars</a></td>
                 </tr>
 
                 </tbody>

@@ -4,43 +4,65 @@
       th:replace="/layout/main::layout('Home',~{::main})"
 >
 <body>
-<main>
+
+<main class="bg-gray-900 min-h-screen w-full flex flex-col items-center justify-center text-center">
     <!-- Welcome Section -->
-    <section class="">
-        <div th:replace="~{fragments/hero :: hero}"></div>
-    </section>
+  <section class="w-full">
+    <div th:insert="~{fragments/hero :: hero}"></div>
+</section>
 
     <!-- Latest Case Studies Section -->
     <section class="my-8 slide-in">
-        <h2 class="text-2xl font-bold text-blue-800">Latest Case Studies</h2>
+        <h1 th:replace="~{layout/fragments/TextHeader::TextHeader('Latest Case Studies')}"></h1>
+
         <br>
         <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
-            <div class="bg-white p-4 rounded shadow-md hover-grow" th:each="caseStudy : ${caseStudies}">
-                <h3 class="text-xl font-bold" th:text="${caseStudy.title}">Case Study Title</h3>
+            <div class="bg-gray-800 p-4 rounded-md shadow-md hover-grow" th:each="caseStudy : ${caseStudies}">
+                <h3 class="text-xl font-bold text-white" th:text="${caseStudy.title}">Case Study Title</h3>
                 <img th:src="${caseStudy.imageLink}" alt="Case Study Image" class="w-full h-auto mt-2 rounded">
-                <p class="text-gray-600" th:text="${caseStudy.summary}">Case Study Summary</p>
-                <a class="text-blue-800 hover:underline" th:href="@{/case-studies/{id}(id=${caseStudy.id})}">Read more</a>
+                <p class="text-gray-400" th:text="${caseStudy.summary}">Case Study Summary</p>
+                <a class="text-blue-500 hover:underline" th:href="@{/case-studies/{id}(id=${caseStudy.id})}">Read more</a>
             </div>
         </div>
     </section>
 
     <!-- Alerts Section -->
     <section class="my-8 fade-in">
-        <h2 class="text-2xl font-bold text-blue-800">Alerts</h2>
+        <h1 th:replace="~{layout/fragments/TextHeader::TextHeader('Alerts')}"></h1>
+
         <br>
-        <div class="bg-white p-4 rounded shadow-md hover-grow" th:each="alert : ${alerts}">
-            <p class="text-gray-600" th:text="${alert.message}">Alert Message</p>
-        </div>
+     <div class="bg-gray-800 px-36 py-4 my-4 rounded-md shadow-md hover-grow " th:each="alert : ${alerts}" >
+    <p class="text-gray-400" th:text="${alert.message}">Alert Message</p>
+</div>
     </section>
 
     <!-- Calls to Action Section -->
     <section class="my-8 text-center">
-        <h2 class="text-2xl font-bold text-blue-800">Calls to Action</h2>
+        <h1 th:replace="~{layout/fragments/TextHeader::TextHeader('Calls to Action')}"></h1>
+
         <br>
         <button class="bg-blue-800 text-white px-4 py-2 rounded hover:bg-blue-700 transition-all duration-300 transform hover:scale-105" th:onclick="'window.location.href=\'' + @{/register} + '\''" aria-label="Register">Register</button>
-        <button class="bg-blue-800 text-white px-4 py-2 rounded hover:bg-blue-700 transition-all duration-300 transform hover:scale-105 ml-4" th:onclick="'window.location.href=\'' + @{/login} + '\''" aria-label="Login">Volunteer</button>
+        <button class="bg-blue-800 text-white px-4 py-2 rounded hover:bg-blue-700 transition-all duration-300 transform hover:scale-105 ml-4" th:onclick="'window.location.href=\'' + @{/login} + '\''" aria-label="Login">Login</button>
     </section>
 </main>
+<script>
+    document.addEventListener('DOMContentLoaded', function () {
+        gsap.from("div[th\\:each='caseStudy : ${caseStudies}'], div[th\\:each='alert : ${alerts}']", { duration: 1, y: 50, opacity: 0, ease: "power2.out", stagger: 0.2 });
+
+        const inputs = document.querySelectorAll('input, textarea');
+        inputs.forEach(input => {
+            input.classList.add('bg-gray-800', 'text-white', 'border', 'border-gray-600', 'rounded-md');
+            input.addEventListener('focus', () => {
+                gsap.to(input, { scale: 1.05, borderColor: '#3b82f6', duration: 0.2 });
+                input.classList.add('focus:ring-2', 'focus:ring-blue-500');
+            });
+            input.addEventListener('blur', () => {
+                gsap.to(input, { scale: 1, borderColor: '#4b5563', duration: 0.2 });
+                input.classList.remove('focus:ring-2', 'focus:ring-blue-500');
+            });
+        });
+    });
+</script>
 
 
 

@@ -1,26 +1,34 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org"
-      th:replace="/layout/main::layout('Home',~{::main})"
+      th:replace="/layout/main::layout('Opportunity Details ',~{::main})"
         lang="en"
 >
-<head>
-    <title>Opportunity Details - Anti-Corruption Platform</title>
-    <link rel="stylesheet" th:href="@{/css/styles.css}" />
-</head>
+
 <body>
-<header>
-    <nav>
-        <ul>
-            <li><a th:href="@{/}">Home</a></li>
-            <li><a th:href="@{/advocacy-alerts}">Advocacy Alerts</a></li>
-            <li><a th:href="@{/volunteer-opportunities}">Volunteer Opportunities</a></li>
-            <li><a th:href="@{/login}">Login</a></li>
-        </ul>
-    </nav>
-</header>
-<main>
-    <h1 th:text="${opportunity.title}">Opportunity Title</h1>
-    <p th:text="${opportunity.description}">Opportunity Description</p>
+
+<main class="container mx-auto p-4 text-white min-h-screen flex flex-col items-center justify-center text-center bg-gray-900">
+    <div class="bg-gray-800 rounded-lg shadow-lg p-10 w-full">
+
+        <h1 th:replace="~{layout/fragments/TextHeader::TextHeader(${opportunity.title})}"></h1>
+        <p th:text="${opportunity.description}">Opportunity Description</p>
+            </div>
 </main>
+<script>
+    document.addEventListener('DOMContentLoaded', function () {
+        gsap.from("main", { duration: 1, y: 50, opacity: 0, ease: "power2.out" });
+
+        const inputs = document.querySelectorAll('input, textarea');
+        inputs.forEach(input => {
+            input.addEventListener('focus', () => {
+                gsap.to(input, { scale: 1.05, borderColor: '#3b82f6', duration: 0.2 });
+            });
+            input.addEventListener('blur', () => {
+                gsap.to(input, { scale: 1, borderColor: '#4b5563', duration: 0.2 });
+            });
+        });
+
+        gsap.from("input, textarea", { duration: 1, y: 20, opacity: 0, ease: "power2.out", stagger: 0.1 });
+    });
+</script>
 </body>
 </html>

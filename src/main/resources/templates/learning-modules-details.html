@@ -1,27 +1,36 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org"
-      th:replace="/layout/main::layout('Home',~{::main})"
+      th:replace="/layout/main::layout('Module Details ',~{::main})"
         lang="en"
 >
-<head>
-    <title>Module Details - Anti-Corruption Platform</title>
-    <link rel="stylesheet" th:href="@{/css/styles.css}" />
-</head>
-<body>
-<header>
-    <nav>
-        <ul>
-            <li><a th:href="@{/}">Home</a></li>
-            <li><a th:href="@{/learning-modules}">Learning Modules</a></li>
-            <li><a th:href="@{/webinars}">Webinars & Workshops</a></li>
-            <li><a th:href="@{/login}">Login</a></li>
-        </ul>
-    </nav>
-</header>
-<main>
-    <h1 th:text="${module.title}">Module Title</h1>
-    <p th:text="${module.description}">Module Description</p>
 
+<body>
+
+<main class="bg-gray-900 min-h-screen w-full flex flex-col items-center justify-center text-center">
+    <div class="w-full max-w-lg bg-gray-800 p-6 rounded-md shadow-md mb-4">
+        <h1 th:replace="~{layout/fragments/TextHeader::TextHeader(${module.title})}"></h1>
+        <p th:text="${module.description}" class="mb-4 text-gray-400">Module Description</p>
+       </div>
 </main>
+<script>
+    document.addEventListener('DOMContentLoaded', function () {
+        gsap.from("input, textarea", { duration: 1, y: 50, opacity: 0, ease: "power2.out", stagger: 0.2 });
+
+        const inputs = document.querySelectorAll('input, textarea');
+        inputs.forEach(input => {
+            input.classList.add('bg-gray-800', 'text-white', 'border', 'border-gray-600', 'rounded-md');
+            input.addEventListener('focus', () => {
+                gsap.to(input, { scale: 1.05, borderColor: '#3b82f6', duration: 0.2 });
+                input.classList.add('focus:ring-2', 'focus:ring-blue-500');
+            });
+            input.addEventListener('blur', () => {
+                gsap.to(input, { scale: 1, borderColor: '#4b5563', duration: 0.2 });
+                input.classList.remove('focus:ring-2', 'focus:ring-blue-500');
+            });
+        });
+
+        gsap.from("input, textarea", { duration: 1, y: 50, opacity: 0, ease: "power2.out", stagger: 0.2 });
+    });
+</script>
 </body>
 </html>
